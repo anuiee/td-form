@@ -1,0 +1,65 @@
+
+<div >
+    <form (submit)="onSubmit(f)" #f="ngForm">
+
+        <div class="form-row">
+        <div class="form-group col-md-6">
+        <label for="exampleInputname">Username</label>
+        <input type="text" class="form-control" id="username" name="username" minlength="5" maxlength="10"  placeholder="username" [(ngModel)]="userData.username" #username="ngModel" pattern="^[A-Za-z_-]{5,10}$"  required />
+        <div *ngIf="username.errors?.['required']">Name is required.</div>
+        <div *ngIf="username.errors?.['minlength']  ">
+        Name must be at least 5 characters long.
+        </div>
+        <div *ngIf="username.errors?.['pattern']">
+        Name must be characters.
+        </div>
+        </div>
+
+       
+        <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="email" class="form-control" id="email" name="emaild"   placeholder="email" [(ngModel)]="userData.emailid" #emailid="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required />
+            <div *ngIf="emailid.errors?.['required']">email is required.</div>
+            <div *ngIf="emailid.errors?.['pattern']  ">
+            Email must be valid.
+            </div>
+            </div>
+        
+
+            <div class="form-group col-md-6">
+                <label for="exampleFormControlTextarea1">Address</label>
+                <textarea class="form-control" id="address" rows="2" name="address" placeholder="address" [(ngModel)]="userData.address" #address="ngModel"   required ></textarea>
+                <div *ngIf="address.errors?.['required']">address is required.</div>
+                </div>
+
+                <div class="form-group col-md-6">
+                <label for="exampleFormControldate">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dob"   placeholder="Date of Birth" [(ngModel)]="userData.dob" #dob="ngModel" required />
+                <div *ngIf="dob.errors?.['required']">date is required.</div>
+                </div>  
+
+
+            <div class="form-group col-md-6">
+            <label for="exampleFormControldate">Password</label>
+            <input type="password" class="form-control" id="pwd" name="pwd"   placeholder="password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" [(ngModel)]="userData.pwd" #pwd="ngModel" required />
+            <div *ngIf="pwd.errors?.['required']">password is required.</div>
+            <div *ngIf="pwd.errors?.['pattern']">Minimum eight characters, at least one letter and one number and one special character.</div>
+            </div> 
+
+            <div class="form-group col-md-6">
+                <label for="exampleFormControldate">Phone</label>
+                <input type="number" class="form-control" id="phone" name="phone"   placeholder="phone" pattern="[0-9]{10}" [(ngModel)]="userData.phone" #phone="ngModel" required />
+                <div *ngIf="phone.errors?.['required']">password is required.</div>
+                <div *ngIf="phone.errors?.['pattern']">Enter a valid 10 digit phone number.</div>
+                </div>
+            </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Save</button>
+      </form>
+</div>
+  <!-- @if(!username && username.touched()){
+                <p>username is required</p>
+          } -->
